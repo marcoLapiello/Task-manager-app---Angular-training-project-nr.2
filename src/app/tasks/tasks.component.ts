@@ -10,10 +10,10 @@ import { AddNewTaskComponent } from './add-new-task/add-new-task.component';
   styleUrl: './tasks.component.css'
 })
 export class TasksComponent {
-  @Input({required:true}) userId!: string;
-  @Input({required:true}) name!: string;
+  @Input({ required: true }) userId!: string;
+  @Input({ required: true }) name!: string;
 
-  newTask = false;
+  isAddingTask = false;
 
   tasks = [
     {
@@ -41,20 +41,19 @@ export class TasksComponent {
     },
   ]
 
-  get selectedUserTasks(){
+  get selectedUserTasks() {
     return this.tasks.filter((task) => task.userId === this.userId);
   }
 
-  onCompleteTask(id:string){
+  onCompleteTask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  addNewTask(){
-    if (this.newTask === false) {
-      this.newTask = true;
-    } else {
-      this.newTask = false;
-    }
-    
+  addNewTask() {
+    this.isAddingTask = true;
+  }
+
+  onCancelNewTask() {
+    this.isAddingTask = false;
   }
 }
