@@ -1,20 +1,24 @@
+@if (newTask) {
+<app-add-new-task></app-add-new-task>
+}
+
 <section id="tasks">
-    <header>
-        <p>{{name}}'s Tasks</p>
-        <menu>
-            <button>Add Task</button>
-        </menu>
-    </header>
+  <header>
+    <p>{{ name }}'s Tasks</p>
+    <menu>
+      <button (click)="addNewTask()">Add Task</button>
+    </menu>
+  </header>
 
-    <ul>
-        @for (singleTask of selectedUserTasks; track singleTask.id) {
-            <li>
-                <app-task [task]="singleTask" (complete)="onCompleteTask($event)"></app-task>
-            </li>
-        }
-        
-       
-    </ul>
+  <ul>
+    @for (singleTask of selectedUserTasks; track singleTask.id) {
+    <li>
+      <app-task
+        [task]="singleTask"
+        (complete)="onCompleteTask($event)"
+      ></app-task>
+    </li>
+
+    }
+  </ul>
 </section>
-
-
